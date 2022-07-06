@@ -31,7 +31,7 @@ function display_current_user_display_name ($atts) {
 
     // get all the roles and their capabilities
     global $wp_roles;
-	$roles = $wp_roles->roles;
+	  $roles = $wp_roles->roles;
     // print_r($roles);
 
     // get users
@@ -43,8 +43,8 @@ function display_current_user_display_name ($atts) {
     );
     $users = get_users( $args );
     foreach($users as $item) {
-        print_r($item->user_nicename);
-        echo "<br>";
+        // print_r($item->user_nicename);
+        // echo "<br>";
     };
 
     // echo gettype($users);
@@ -52,3 +52,20 @@ function display_current_user_display_name ($atts) {
     return $user->roles[0];
 }
 add_shortcode('user_role', 'display_current_user_display_name');
+
+function block_unauth_user(){
+  $user = wp_get_current_user();
+  $loginurl = 'http://localhost/wordpress/wp-login.php';
+  $unauthorized = 'http://localhost/wordpress/you-are-not-authorized/';
+  $role = $user->roles[0];
+
+
+  if (!$user->exists()){
+    echo("<script>location.href = '".$loginurl."'</script>");
+  } elseif($role != 'administrator'){
+    echo("<script>location.href = '".$unauthorized."'</script>");
+  };
+
+  return null;
+}
+add_shortcode( 'block_role', 'block_unauth_user');
