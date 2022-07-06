@@ -140,3 +140,27 @@ img {
 #header_area.center_menu .col-md-9 ul {
   text-align: center;
 }
+
+/*=========================
+ Copyright Area Style
+==========================*/
+#copyright_area {
+  background: #07a8be;
+  padding: 20px 0;
+  color: #fff;
+  text-align: center;
+}
+
+#copyright_area p {
+  margin: 0;
+  color: #fff;
+  font-size: 15px;
+}
+
+#copyright_area p a {
+  color: #067f9e;
+}
+
+#copyright_area p a:hover {
+  text-decoration: underline;
+}
